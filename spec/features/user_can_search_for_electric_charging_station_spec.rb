@@ -6,24 +6,16 @@ describe "user can search for an electric charging station" do
     select 'Turing', from: :location
     click_on "Find Nearest Station"
     expect(current_path).to eq("/search")
-
-    attrs = {
-      name: "Electric Station",
-      address: "123 17th St Denver CO",
-      fuel_type: "Electric",
-      distance: "0.1",
-      access_time: "5"
-    }
-
-    station = Station.new(attrs)
-    # expect(page).to have_css(".station")
+    expect(page).to have_css(".station")
     # Then I should see the closest electric fuel station to me.
 
-    expect(page).to have_content(station.name)
-    expect(page).to have_content(station.address)
-    expect(page).to have_content(station.fuel_type)
-    expect(page).to have_content(station.distance)
-    expect(page).to have_content(station.access_time)
+    within(first(".station")) do
+      expect(page).to have_css(".name")
+      expect(page).to have_css(".address")
+      expect(page).to have_css(".fuel_type")
+      expect(page).to have_css(".distance")
+      expect(page).to have_css(".access_time")
+    end
 
   end
 end

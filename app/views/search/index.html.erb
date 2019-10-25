@@ -1,5 +1,9 @@
-<li><%= closest_station.name %></li>
-<li><%= closest_station.address %></li>
-<li><%= closest_station.fuel_type %></li>
-<li><%= closest_station.distance %></li>
-<li><%= closest_station.access_time %></li>
+Closest Station Results
+<% facade.members.each do |member| %>
+<ul class="member">
+  <li class="name"><%= member.name %></li>
+  <li class="role"><%= member.role %></li>
+  <li class="party"><%= member.party %></li>
+  <li class="district"><%= member.district %></li>
+</ul>
+<% end %>
