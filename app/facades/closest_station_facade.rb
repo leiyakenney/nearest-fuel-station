@@ -11,10 +11,8 @@ class ClosestStationFacade
 
     response = conn.get("v1/nearest.json?api_key=#{ENV['NREL_API_KEY']}&location=1771+17th+St+Denver+CO&limit=1")
     top_station_data = JSON.parse(response.body, symbolize_names: true)
-
-    top_station_data.map do |data|
-      Station.new(data)
-    end 
+    top_station_data
+    # binding.pry
   end
   #facade.station[:fuel_stations][:station_name] = name
   #facade.station[:fuel_stations][:street_address] = address
