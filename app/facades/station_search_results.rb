@@ -1,20 +1,18 @@
 class StationSearchResults
   def initialize
-    @name = name
-    @address = address
-    @fuel_type = fuel_type
-    @distance = distance
-    @access_time = access_time
+
   end
 
-  def stations
-    conn = Faraday.new(url: "https://api.propublica.org") do |faraday|
+  def closest_station
+    conn = Faraday.new(url: "https://developer.nrel.gov") do |faraday|
       faraday.headers["X-API-KEY"] = ENV['NREL_API_KEY']
       faraday.adapter Faraday.default_adapter
     end
 
-    response = conn.get("/congress/v1/members/house/#{state}/current.json")
+    response = conn.get("/api/alt-fuel-stations/v1/nearest.json?api_key=#{ENV['NREL_API_KEY']}&location=1771+17th+St+Denver+CO&fuel_type=ELEC&limit=1")
 
-    JSON.parse(response.body, symbolize_names: true)[:results]
+    station_search_data = JSON.parse(response.body, symbolize_names: true)[:results]
+
+    station_search_data
   end
 end
