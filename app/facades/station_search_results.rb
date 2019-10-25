@@ -9,7 +9,7 @@ class StationSearchResults
 
   def stations
     conn = Faraday.new(url: "https://api.propublica.org") do |faraday|
-      faraday.headers["X-API-KEY"] = ENV['PROPUBLICA_API_KEY']
+      faraday.headers["X-API-KEY"] = ENV['NREL_API_KEY']
       faraday.adapter Faraday.default_adapter
     end
 
