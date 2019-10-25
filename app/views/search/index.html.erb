@@ -1,9 +1,6 @@
 Closest Station Results
-<% facade.members.each do |member| %>
-<ul class="member">
-  <li class="name"><%= member.name %></li>
-  <li class="role"><%= member.role %></li>
-  <li class="party"><%= member.party %></li>
-  <li class="district"><%= member.district %></li>
+<ul class="station">
+  <li class="name"><%= facade.station.name %></li>
+  <li class="address"><%= facade.station.address %></li>
+  <li class="fuel_type"><%= facade.station.fuel_type %></li>
 </ul>
-<% end %>
