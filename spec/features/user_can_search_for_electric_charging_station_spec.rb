@@ -2,27 +2,24 @@ require 'rails_helper'
 
 describe "user can search for an electric charging station" do
   scenario 'user can search for electric fuel stations' do
-    # As a user
     visit '/'
-    # When I visit "/"
     select 'Turing', from: :location
-    # And I select "Turing" form the start location drop down (Note: Use the existing search form)
     click_on "Find Nearest Station"
-    # And I click "Find Nearest Station"
     expect(current_path).to eq("/search")
-    # Then I should be on page "/search"
+    expect(page).to have_css(".station")
     # Then I should see the closest electric fuel station to me.
-    #
+
+    within(first(".station")) do
+      expect(page).to have_css(".name")
+      expect(page).to have_css(".address")
+      expect(page).to have_css(".fuel_type")
+      expect(page).to have_css(".distance")
+      expect(page).to have_css(".access_time")
+    end
 
   end
 end
 
-# For that station I should see
-# - Name
-# - Address
-# - Fuel Type
-# - Distance
-# - Access Times
 #
 # I should also see:
 # - the distance of the nearest station
